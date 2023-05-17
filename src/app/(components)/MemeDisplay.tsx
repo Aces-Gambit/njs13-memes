@@ -2,24 +2,42 @@
 import Image from 'next/image'
 import { Anton } from 'next/font/google'
 import { useElementSize } from 'usehooks-ts';
-import { MemeTemplate } from '../(data)/types';
+import { MemeTemplate, Meme } from '../(data)/types';
 
 const anton = Anton({ weight: "400", subsets: ['latin'] });
 
 const MemeDisplay = ({
-    id,
-    background,
-    textAreas,
-}: MemeTemplate 
-) => {
+  background,
+  textAreas,
+  values,
+}: {
+  background: {
+    src: string;
+    width: number;
+    height: number;
+    alt: string;
+  };
+  textAreas: {
+    id: string;
+    top: number;
+    left: number;
+    width: number;
+    height: number;
+    color: string;
+    fontSize: number;
+    text: string;
+  }[];
+  values: Record<string, string>;
+}) => {
     const [memeRef, { width }] = useElementSize();
+    
     const ratio = width / background.width;
-
+    
     return (
       <div className="relative" ref={memeRef}>
           <Image
             src={background.src}
-            width={background.width}
+            width= {background.width}
             height={background.height}
             alt={background.alt}
           />
@@ -41,7 +59,7 @@ const MemeDisplay = ({
                   lineHeight: "1.1",
                 }}
               >
-                {textArea.text}
+                {values?.[textArea.id] ?? textArea.text}
               </div>
             </div>
           ))} 

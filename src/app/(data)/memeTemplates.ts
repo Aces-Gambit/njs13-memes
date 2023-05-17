@@ -53,6 +53,47 @@ const templates: MemeTemplate[] = [
             },
         ],
     },
+    {
+        id: 'guy-looking',
+        background: {
+          src: "/guy-looking.jpg",
+          width: 1200,
+          height: 1066,
+          alt: "Guy Looking",
+        },
+        textAreas: [
+          {
+            id: "new",
+            top: 500,
+            left: 0,
+            width: 632,
+            height: 320,
+            text: "New",
+            fontSize: 120,
+            color: "white",
+          },
+          {
+            id: "person",
+            top: 320,
+            left: 583,
+            width: 400,
+            height: 300,
+            text: "Person",
+            fontSize: 80,
+            color: "white",
+          },
+          {
+            id: "old",
+            top: 500,
+            left: 901,
+            width: 350,
+            height: 320,
+            text: "Old",
+            fontSize: 100,
+            color: "white",
+          },
+        ],
+    },
 ];
 
 export default templates;

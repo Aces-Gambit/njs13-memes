@@ -32,3 +32,7 @@ body {
 .text-stroke-white {
   -webkit-text-stroke: 2px black;
 }
+
+.select-font {
+  font-family: "Anton", sans-serif;
+}

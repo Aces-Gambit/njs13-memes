@@ -1,19 +1,32 @@
-import type { MemeTemplate } from '@/app/(data)/types';
-import Image from 'next/image'
-import { Anton } from 'next/font/google'
+import MemeEditor from './(components)/MemeEditor';
 import MemeDisplay from './(components)/MemeDisplay';
-
-const anton = Anton({ weight: "400", subsets: ['latin'] });
+import { MemeTemplate, Meme } from '@/app/(data)/types';
 
 export default async function Home() {
-  const memeTemplatesReq = await fetch("http://localhost:3000/api/memeTemplates");
-  const memeTemplates = await memeTemplatesReq.json();
-  console.log(memeTemplates);
+  const memeTemplatesReq = await fetch(
+    "http://localhost:3000/api/memeTemplates"
+    );
+  const memeTemplates = await memeTemplatesReq.json() as MemeTemplate[];
+
+  const memesReq = await fetch(
+    "http://localhost:3000/api/memes", {
+      cache: "no-cache",
+    }
+    );
+  const memes = await memesReq.json() as Meme[];
   return (
-    <main className="max-w-[1200px] mx-auto">
-      <div className="max-w-[900px]">
-        <MemeDisplay {...memeTemplates[0]} />
-      </div>
-    </main>
+      <main className="max-w-[1200px] mx-auto">
+        <MemeEditor templates={memeTemplates} />
+        <h2 className="text-3xl font-bold mt-5 text-white">Memes</h2>
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-2">
+          {memes.map((meme) => (
+            <MemeDisplay
+              key={meme.id} 
+              {...memeTemplates.find((t) => t.id === meme.template)!}
+              values={meme.values} 
+            />
+          ))}
+        </div>
+      </main>
   )
 }
