@@ -14,9 +14,6 @@ const MemeDisplay = ({
 ) => {
     const [memeRef, { width }] = useElementSize();
     const ratio = width / background.width;
-    console.log("🚀 ~ file: MemeDisplay.tsx:17 ~ width / background.width:", background.width)
-    console.log("🚀 ~ file: MemeDisplay.tsx:17 ~ width:", width)
-    console.log("🚀 ~ file: MemeDisplay.tsx:17 ~ ratio:", ratio)
 
     return (
       <div className="relative" ref={memeRef}>

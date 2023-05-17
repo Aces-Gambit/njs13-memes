@@ -11,7 +11,7 @@ export default async function Home() {
   console.log(memeTemplates);
   return (
     <main className="max-w-[1200px] mx-auto">
-      <div className="max-w-[300px]">
+      <div className="max-w-[900px]">
         <MemeDisplay {...memeTemplates[0]} />
       </div>
     </main>
